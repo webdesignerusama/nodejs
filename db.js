@@ -1,12 +1,13 @@
 const mongoose=require('mongoose')
-const mongoURL='mongodb://0.0.0.0:27017/hotels'
- 
+require('dotenv').config()
+
+// const mongoURL='process.env.MONGODB_URL_LOCAL'
+ const mongoURL=process.env.MONGODB_URL
 mongoose.connect(mongoURL, {
     
 })
 // returns a connection object
 const db= mongoose.connection;
-
 // following event listeners to react to certain events 
 
 db.on('connected', ()=>{
