@@ -1,13 +1,21 @@
 const express = require('express')
+const db =require('./db')
+
+const bodyParser=require('body-parser')
 const app = express()
+app.use(bodyParser.json());
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Welcome to my hotel , how can i help you?')
 })
-app.post('/items',(req,res)=>{
-    res.send('data is saved')
-})
+
+
+const personRoutes=require('./routes/personRoutes')
+const menuRoutes=require('./routes/menuRoutes')
+
+app.use('/person', personRoutes)
+app.use('/menu', menuRoutes)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
